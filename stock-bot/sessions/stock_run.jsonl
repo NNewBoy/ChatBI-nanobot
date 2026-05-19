@@ -1,9 +1,5 @@
-{"_type": "metadata", "key": "stock:run", "created_at": "2026-05-20T02:43:49.649182", "updated_at": "2026-05-20T02:45:09.744014", "metadata": {}, "last_consolidated": 0}
-{"role": "user", "content": "查询贵州茅台最新收盘价", "timestamp": "2026-05-20T02:43:59.161901"}
-{"role": "assistant", "content": "", "tool_calls": [{"id": "H0nQ9JRBq", "type": "function", "function": {"name": "query_db", "arguments": "{\"sql\": \"SELECT close FROM stock_history WHERE ts_code='600519.SH' ORDER BY trade_date DESC LIMIT 1\"}"}}], "timestamp": "2026-05-20T02:43:59.161901"}
-{"role": "tool", "tool_call_id": "H0nQ9JRBq", "name": "query_db", "content": "|   close |\n|--------:|\n| 1332.95 |", "timestamp": "2026-05-20T02:43:59.161901"}
-{"role": "assistant", "content": "贵州茅台（600519.SH）的最新收盘价为1332.95元。", "timestamp": "2026-05-20T02:43:59.161901"}
-{"role": "user", "content": "预测贵州茅台未来5天的收盘价", "timestamp": "2026-05-20T02:45:09.744014"}
-{"role": "assistant", "content": "", "tool_calls": [{"id": "gQbBGv5rK", "type": "function", "function": {"name": "arima_stock", "arguments": "{\"ts_code\": \"600519.SH\", \"n\": 5}"}}], "timestamp": "2026-05-20T02:45:09.744014"}
-{"role": "tool", "tool_call_id": "gQbBGv5rK", "name": "arima_stock", "content": "**贵州茅台(600519.SH) ARIMA(5,1,5) 预测结果**\n\n- 历史数据范围: 2025-05-20 ~ 2026-05-15 (240个交易日)\n- 预测未来 5 个交易日收盘价:\n\n| 日期                |   预测收盘价 |\n|:--------------------|-------------:|\n| 2026-05-18 00:00:00 |      1342.85 |\n| 2026-05-19 00:00:00 |      1339.25 |\n| 2026-05-20 00:00:00 |      1348.07 |\n| 2026-05-21 00:00:00 |      1354.02 |\n| 2026-05-22 00:00:00 |      1352.17 |\n\n> 注意: ARIMA模型基于历史价格趋势进行统计预测，仅供参考，不构成投资建议。\n\n![预测图表](image_show/arima_1779216306188.png)", "timestamp": "2026-05-20T02:45:09.744014"}
-{"role": "assistant", "content": "贵州茅台（600519.SH）未来5个交易日的收盘价预测如下：\n\n- 2026-05-18: 1342.85元\n- 2026-05-19: 1339.25元\n- 2026-05-20: 1348.07元\n- 2026-05-21: 1354.02元\n- 2026-05-22: 1352.17元\n\n以下是预测结果的图表：\n![](image_show/arima_1779216306188.png)\n\n请注意，ARIMA模型基于历史价格趋势进行统计预测，仅供参考，不构成投资建议。", "timestamp": "2026-05-20T02:45:09.744014"}
+{"_type": "metadata", "key": "stock:run", "created_at": "2026-05-20T03:55:59.401314", "updated_at": "2026-05-20T03:56:02.459114", "metadata": {}, "last_consolidated": 0}
+{"role": "user", "content": "查询贵州茅台最新收盘价", "timestamp": "2026-05-20T03:56:02.459114"}
+{"role": "assistant", "content": "", "tool_calls": [{"id": "fONAxFDiM", "type": "function", "function": {"name": "query_db", "arguments": "{\"sql\": \"SELECT close FROM stock_history WHERE ts_code='600519.SH' ORDER BY trade_date DESC LIMIT 1\"}"}}], "timestamp": "2026-05-20T03:56:02.459114"}
+{"role": "tool", "tool_call_id": "fONAxFDiM", "name": "query_db", "content": "|   close |\n|--------:|\n| 1332.95 |", "timestamp": "2026-05-20T03:56:02.459114"}
+{"role": "assistant", "content": "贵州茅台（600519.SH）的最新收盘价为 1332.95 元。", "timestamp": "2026-05-20T03:56:02.459114"}

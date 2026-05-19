@@ -1,3 +1,4 @@
+
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
@@ -52,27 +53,40 @@ def build_bot() -> Nanobot:
         print("[Error] DASHSCOPE_API_KEY not set")
         sys.exit(1)
 
+    # 先设置环境变量，让 config 可能使用（虽然 load_config 在下面，我们手动设置）
+    os.environ["DASHSCOPE_API_KEY"] = dashscope_key
+
+    # 加载配置
     config = load_config(WORKSPACE / "config.json")
-    config.providers.dashscope.api_key = dashscope_key
     config.agents.defaults.workspace = str(WORKSPACE)
+    # 手动设置 API key！这是关键！
+    config.providers.dashscope.api_key = dashscope_key
 
+    # 创建 provider，完全正确的方法
     provider = _make_provider(config)
-    defaults = config.agents.defaults
 
+    defaults = config.agents.defaults
+    bus = MessageBus()
+
+    # 正确创建 AgentLoop，包括所有需要的参数！
     loop = AgentLoop(
-        bus=MessageBus(),
+        bus=bus,
         provider=provider,
         workspace=WORKSPACE,
         model=defaults.model,
         max_iterations=defaults.max_tool_iterations,
         context_window_tokens=defaults.context_window_tokens,
+        context_block_limit=defaults.context_block_limit,
         max_tool_result_chars=defaults.max_tool_result_chars,
+        provider_retry_mode=defaults.provider_retry_mode,
         web_config=config.tools.web,
         exec_config=config.tools.exec,
-        restrict_to_workspace=False,
+        restrict_to_workspace=config.tools.restrict_to_workspace,
+        mcp_servers=config.tools.mcp_servers,
         timezone=defaults.timezone,
     )
 
+    # 注册我们的自定义工具
     loop.tools.register(StockQueryDBTool())
     loop.tools.register(ArimaStockTool())
     loop.tools.register(BollDetectionTool())
