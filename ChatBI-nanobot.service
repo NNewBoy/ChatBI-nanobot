@@ -6,10 +6,11 @@ After=network.target
 
 [Service]
 Type=notify
-# User=root                # 替换为你的用户名，不要用 root
-# Group=www-data
-WorkingDirectory=/var/ChatBI-nanobot   # 项目绝对路径
-Environment="PATH=/var/ChatBI-nanobot/venv/bin"     # 虚拟环境路径
+# User=root
+# 项目绝对路径
+WorkingDirectory=/var/ChatBI-nanobot
+# 虚拟环境路径
+Environment="PATH=/var/ChatBI-nanobot/venv/bin"   
 ExecStart=/var/ChatBI-nanobot/venv/bin/gunicorn -c /var/ChatBI-nanobot/gunicorn.conf.py stock-bot.web_ui:app
 ExecReload=/bin/kill -s HUP $MAINPID
 KillMode=mixed
