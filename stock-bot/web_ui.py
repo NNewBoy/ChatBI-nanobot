@@ -300,7 +300,4 @@ def main():
         fastapi_app = FastAPI()
         return gr.mount_gradio_app(app=fastapi_app, blocks=demo, path="/")
     
-if os.environ.get("PROJECT_ENVIRONMENT", "dev") == "dev" and __name__ == "__main__":
-    main()
-else:
-    app = main()
+app = main()
