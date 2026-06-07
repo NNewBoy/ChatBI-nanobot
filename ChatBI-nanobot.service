@@ -1,17 +1,18 @@
 # 服务文件
 # 创建 /etc/systemd/system/ChatBI-nanobot.service
 [Unit]
-Description=ChatBI-nanobot with Gunicorn
+Description=ChatBI-nanobot
 After=network.target
 
 [Service]
-Type=notify
+Type=simple
 # User=root
 # 项目绝对路径
 WorkingDirectory=/var/ChatBI-nanobot
 # 虚拟环境路径
-Environment="PATH=/var/ChatBI-nanobot/venv/bin"   
-ExecStart=/var/ChatBI-nanobot/venv/bin/gunicorn -c /var/ChatBI-nanobot/gunicorn.conf.py stock-bot.web_ui:app
+Environment="PATH=/var/ChatBI-nanobot/venv/bin"
+Environment="PROJECT_ENVIRONMENT=prod"
+ExecStart=/var/ChatBI-nanobot/venv/bin/python /var/ChatBI-nanobot/stock-bot/web_ui.py
 ExecReload=/bin/kill -s HUP $MAINPID
 KillMode=mixed
 TimeoutStopSec=5

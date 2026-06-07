@@ -37,6 +37,9 @@ sys.path.insert(0, str(WORKSPACE))
 
 import gradio as gr
 
+from config import load_env, PROJECT_ENVIRONMENT
+load_env()
+
 from agent import build_bot
 from init_db import init_sqlite_from_mysql
 from fastapi import FastAPI
@@ -286,18 +289,23 @@ def main():
 
     demo = build_ui()
     print(f"\n📈 {BOT_NAME} Web UI 启动中...")
-    if os.environ.get("PROJECT_ENVIRONMENT", "dev") == "dev":
+
+    if PROJECT_ENVIRONMENT == "dev":
         demo.launch(
-            server_name="0.0.0.0",
+            server_name=os.environ.get("GRADIO_SERVER_NAME", "127.0.0.1"),
             server_port=int(os.environ.get("GRADIO_SERVER_PORT", 7860)),
             share=False,
         )
     else:
-        # 服务器部署：创建但不要调用 launch() 方法
-        # 原来的代码: demo.launch()
-        # 改为创建一个全局的 app 对象，供 Gunicorn 使用
-        # 创建 FastAPI 应用并挂载 Gradio
         fastapi_app = FastAPI()
-        return gr.mount_gradio_app(app=fastapi_app, blocks=demo, path="/")
-    
-app = main()
+        app = gr.mount_gradio_app(app=fastapi_app, blocks=demo, path="/")
+        import uvicorn
+        uvicorn.run(
+            app,
+            host=os.environ.get("GRADIO_SERVER_NAME", "127.0.0.1"),
+            port=int(os.environ.get("GRADIO_SERVER_PORT", 3000)),
+        )
+
+
+if __name__ == "__main__":
+    main()
