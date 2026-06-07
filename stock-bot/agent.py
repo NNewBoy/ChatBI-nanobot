@@ -73,7 +73,7 @@ def build_bot() -> Nanobot:
         bus=bus,
         provider=provider,
         workspace=WORKSPACE,
-        model=defaults.model,
+        model=os.environ.get("DASHSCOPE_MODEL", defaults.model),
         max_iterations=defaults.max_tool_iterations,
         context_window_tokens=defaults.context_window_tokens,
         context_block_limit=defaults.context_block_limit,

@@ -285,12 +285,19 @@ def main():
 
     demo = build_ui()
     print(f"\n📈 {BOT_NAME} Web UI 启动中...")
-    demo.launch(
-        server_name="0.0.0.0",
-        server_port=int(os.environ.get("GRADIO_SERVER_PORT", 7860)),
-        share=False,
-    )
-
-
-if __name__ == "__main__":
+    if os.environ.get("PROJECT_ENVIRONMENT", "dev") == "dev":
+        demo.launch(
+            server_name="0.0.0.0",
+            server_port=int(os.environ.get("GRADIO_SERVER_PORT", 7860)),
+            share=False,
+        )
+    else:
+        # 服务器部署：创建但不要调用 launch() 方法
+        # 原来的代码: demo.launch()
+        # 改为创建一个全局的 app 对象，供 Gunicorn 使用
+        return gr.mount_gradio_app(app=None, blocks=demo, path="/")
+    
+if os.environ.get("PROJECT_ENVIRONMENT", "dev") == "dev" and __name__ == "__main__":
     main()
+else:
+    app = main()
