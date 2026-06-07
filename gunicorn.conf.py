@@ -10,8 +10,8 @@ timeout = 120                      # 超时时间，可根据业务调整
 keepalive = 5                      # Keep-Alive 连接时间
 
 # 日志配置
-accesslog = "/var/log/gunicorn/access.log"
-errorlog = "/var/log/gunicorn/error.log"
+accesslog = "/var/ChatBI-nanobot/log/gunicorn/access.log"
+errorlog = "/var/ChatBI-nanobot/log/gunicorn/error.log"
 loglevel = "info"
 
 # 设置环境变量
