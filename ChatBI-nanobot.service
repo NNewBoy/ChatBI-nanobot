@@ -1,5 +1,5 @@
 # 服务文件
-# 创建 /etc/systemd/system/gradio-app.service
+# 创建 /etc/systemd/system/ChatBI-nanobot.service
 [Unit]
 Description=ChatBI-nanobot with Gunicorn
 After=network.target

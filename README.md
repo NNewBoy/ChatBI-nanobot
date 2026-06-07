@@ -27,7 +27,7 @@ pip install -r requirements.txt
 ### 创建 systemd 服务文件
 
 ```bash
-cp ChatBI-nanobot.service /etc/systemd/system/ChatBI-nanobot.service
+cp /var/ChatBI-nanobot/ChatBI-nanobot.service /etc/systemd/system/ChatBI-nanobot.service
 ```
 
 ### 编辑服务配置
