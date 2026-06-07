@@ -39,6 +39,7 @@ import gradio as gr
 
 from agent import build_bot
 from init_db import init_sqlite_from_mysql
+from fastapi import FastAPI
 
 BOT_NAME = "股票查询助手"
 BOT_DESCRIPTION = "股票行情查询、ARIMA预测、布林带异常检测"
@@ -295,7 +296,9 @@ def main():
         # 服务器部署：创建但不要调用 launch() 方法
         # 原来的代码: demo.launch()
         # 改为创建一个全局的 app 对象，供 Gunicorn 使用
-        return gr.mount_gradio_app(app=None, blocks=demo, path="/")
+        # 创建 FastAPI 应用并挂载 Gradio
+        fastapi_app = FastAPI()
+        return gr.mount_gradio_app(app=fastapi_app, blocks=demo, path="/")
     
 if os.environ.get("PROJECT_ENVIRONMENT", "dev") == "dev" and __name__ == "__main__":
     main()
