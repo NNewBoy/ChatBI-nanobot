@@ -5,7 +5,7 @@ import os
 # 基础配置
 bind = "127.0.0.1:3000"            # 监听地址，只允许本机访问
 workers = 2  # 工作进程数 multiprocessing.cpu_count() * 2 + 1
-worker_class = "sync"              # 工作模式，对于 Gradio 通常 sync 就够了
+worker_class = "uvicorn.workers.UvicornWorker"              # 工作模式，Gradio 基于 FastAPI（ASGI），而 gunicorn 默认是 WSGI 服务器
 timeout = 120                      # 超时时间，可根据业务调整
 keepalive = 5                      # Keep-Alive 连接时间
 
