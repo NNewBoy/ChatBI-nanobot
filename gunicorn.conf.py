@@ -18,6 +18,7 @@ loglevel = "info"
 # 当代码中需要使用 GRADIO_SERVER_PORT 时，可以在这里设置
 os.environ["GRADIO_SERVER_PORT"] = "3000" # Gradio 服务端口
 os.environ["GRADIO_SERVER_NAME"] = "127.0.0.1" # Gradio 服务地址
+os.environ["PROJECT_ENVIRONMENT"] = "prod" # 项目环境，dev启动本地调试
 os.environ["STOCK_DB_USER"] = "root" # 数据库用户名
 os.environ["STOCK_DB_PASSWORD"] = "" # 数据库密码
 os.environ["STOCK_DB_HOST"] = "localhost:3306" # 数据库主机地址
