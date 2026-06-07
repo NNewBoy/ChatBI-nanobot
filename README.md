@@ -39,10 +39,10 @@ cp /var/ChatBI-nanobot/ChatBI-nanobot.service /etc/systemd/system/ChatBI-nanobot
 # 1. 重新加载 systemd 配置，让它识别到新创建的服务文件
 sudo systemctl daemon-reload
 # 2. 设置服务开机自启
-sudo systemctl enable myapp
+sudo systemctl enable ChatBI-nanobot
 # 3. 立即启动服务
-sudo systemctl start myapp
+sudo systemctl start ChatBI-nanobot
 # 4. 查看服务状态（用于调试，确认是否正常运行）
-sudo systemctl status myapp
+sudo systemctl status ChatBI-nanobot
 ```
 
