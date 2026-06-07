@@ -27,7 +27,7 @@ DEV_ENV = {
 # ---- prod 环境（服务器部署） ----
 PROD_ENV = {
     "GRADIO_SERVER_PORT": "3000",
-    "GRADIO_SERVER_NAME": "127.0.0.1",
+    "GRADIO_SERVER_NAME": "0.0.0.0",
     "PROJECT_ENVIRONMENT": "prod",
     "STOCK_DB_USER": "root",
     "STOCK_DB_PASSWORD": "",
