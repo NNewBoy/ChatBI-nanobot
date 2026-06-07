@@ -1,9 +1,9 @@
 ## 快速上手/部署教程
 
-### 新建代码目录（如 '/var/NewBoyStockBot），Git克隆项目
+### 新建代码目录（如 '/var/ChatBI-nanobot），Git克隆项目
 
 ```bash
-cd /var/NewBoyStockBot
+cd /var/ChatBI-nanobot
 git clone <你的项目Git仓库地址>
 ```
 ### 创建并激活虚拟环境
@@ -27,11 +27,11 @@ pip install -r requirements.txt
 ### 创建 systemd 服务文件
 
 ```bash
-cp NewBoyStockBot.service /etc/systemd/system/NewBoyStockBot.service
+cp ChatBI-nanobot.service /etc/systemd/system/ChatBI-nanobot.service
 ```
 
 ### 编辑服务配置
-将文件中NewBoyStockBot替换为你的项目名称
+将文件中ChatBI-nanobot替换为你的项目名称
 
 ### 启动并管理服务
 
